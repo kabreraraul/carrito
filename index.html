@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda de Bolsas</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #fff;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: #333;
+            color: #fff;
+            padding: 15px 0;
+            text-align: center;
+            margin-bottom: 30px; /* Añade más espacio debajo de la barra de navegación */
+        }
+        .navbar .navbar-brand {
+            color: #fff;
+            font-size: 2em; /* Aumenta el tamaño de la letra */
+            margin: 0 auto;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        .product {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .product img {
+            max-width: 100%;
+            height: auto;
+            transition: transform 0.2s;
+        }
+        .product img:hover {
+            transform: scale(1.05);
+        }
+        .product h2 {
+            font-size: 1.5rem;
+            margin: 10px 0;
+        }
+        .product .price {
+            font-size: 1.2rem;
+            color: #555;
+            margin: 10px 0; /* Añade un margen para separación */
+        }
+        .product button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.2s;
+        }
+        .product button:hover {
+            background-color: #0056b3;
+        }
+        .quality-section {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin: 20px 0;
+            text-align: center;
+        }
+        .quality-section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        .quality-section p {
+            font-size: 1rem;
+            color: #333;
+        }
+        .cart {
+            display: none;
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Tienda de Bolsas</a>
+        <button class="btn btn-primary" onclick="toggleCart()">Ver Carrito</button>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <!-- Productos -->
+            <div class="col-md-4">
+                <div class="card product">
+                    <img src="producto1.jpg" class="card-img-top" alt="Producto 1">
+                    <div class="card-body">
+                        <h2 class="card-title">Bolsa Elegante</h2>
+                        <p class="price">$59.99</p>
+                        <button class="btn btn-primary" onclick="addToCart('Bolsa Elegante', 59.99)">Comprar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card product">
+                    <img src="producto2.jpg" class="card-img-top" alt="Producto 2">
+                    <div class="card-body">
+                        <h2 class="card-title">Bolsa Casual</h2>
+                        <p class="price">$49.99</p>
+                        <button class="btn btn-primary" onclick="addToCart('Bolsa Casual', 49.99)">Comprar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card product">
+                    <img src="producto3.jpg" class="card-img-top" alt="Producto 3">
+                    <div class="card-body">
+                        <h2 class="card-title">Bolsa Deportiva</h2>
+                        <p class="price">$39.99</p>
+                        <button class="btn btn-primary" onclick="addToCart('Bolsa Deportiva', 39.99)">Comprar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card product">
+                    <img src="producto4.jpg" class="card-img-top" alt="Producto 4">
+                    <div class="card-body">
+                        <h2 class="card-title">Bolsa de Noche</h2>
+                        <p class="price">$29.99</p>
+                        <button class="btn btn-primary" onclick="addToCart('Bolsa de Noche', 29.99)">Comprar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card product">
+                    <img src="producto5.jpg" class="card-img-top" alt="Producto 5">
+                    <div class="card-body">
+                        <h2 class="card-title">Bolsa de Viaje</h2>
+                        <p class="price">$69.99</p>
+                        <button class="btn btn-primary" onclick="addToCart('Bolsa de Viaje', 69.99)">Comprar</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card product">
+                    <img src="producto6.jpg" class="card-img-top" alt="Producto 6">
+                    <div class="card-body">
+                        <h2 class="card-title">Bolsa de Playa</h2>
+                        <p class="price">$19.99</p>
+                        <button class="btn btn-primary" onclick="addToCart('Bolsa de Playa', 19.99)">Comprar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Carrito de Compras -->
+        <div id="cart" class="cart">
+            <h2>Carrito de Compras</h2>
+            <div id="cart-items"></div>
+            <p>Total: $<span id="cart-total">0.00</span></p>
+        </div>
+
+        <!-- Calidad y Materiales -->
+        <div class="quality-section">
+            <h2>Calidad y Materiales</h2>
+            <p>Nuestros productos están hechos con los mejores materiales para garantizar la durabilidad y el estilo. Utilizamos cuero auténtico, telas resistentes y cierres de alta calidad. Cada bolsa pasa por un riguroso proceso de control de calidad para asegurar que reciba solo lo mejor.</p>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        let cart = [];
+
+        function addToCart(product, price) {
+            cart.push({ product, price });
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartItems = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            cartItems.innerHTML = '';
+            let total = 0;
+
+            cart.forEach(item => {
+                const div = document.createElement('div');
+                div.classList.add('cart-item');
+                div.innerHTML = `<span>${item.product}</span><span>$${item.price.toFixed(2)}</span>`;
+                cartItems.appendChild(div);
+                total += item.price;
+            });
+
+            cartTotal.textContent = total.toFixed[_{{{CITATION{{{_1{](https://github.com/la9una/web/tree/ba1073ae044ebb7b538a3b13f0f9598f7c410bb6/docs%2Fbootstrap%2Falignci.md)[_{{{CITATION{{{_2{](https://github.com/Sergiocorto/shop-laravel/tree/d96009d8a68ff6ebbc1813b0774da34693fcd6da/resources%2Fviews%2Finformation%2Fabout.blade.php)[_{{{CITATION{{{_3{](https://github.com/rkustas/techarticles/tree/598d65a5c026d9ecd3c7f0258f4a44f93e7029d0/client%2Fpages%2F_document.js)[_{{{CITATION{{{_4{](https://github.com/tysonshazam/project/tree/94324036247d795c12c651e63228924b203c2c4f/resources%2Fviews%2Faddbussiness.blade.php)[_{{{CITATION{{{_5{](https://github.com/JIbraeelMehmood/Blog-dynamicPage-Web/tree/03212259b8e0093b29fa023694fb31071156ebe9/resources%2Fviews%2Fpages%2Fadmin-pageSection.blade.php)[_{{{CITATION{{{_6{](https://github.com/SangramjitHazarika/BankWebsite/tree/405eaeb1160166c731b4d4d0b6f4121cd0474da2/sparks%20foundation%20bank%2FAbout.php)[_{{{CITATION{{{_7{](https://github.com/kostarask/Groceries/tree/9ed421e633bf77569edb7fb8a8ff8cc4533ca6d7/includes%2Fheader.php)
